@@ -1,0 +1,91 @@
+#include<iostream.h>
+include<conio.h>
+class account
+{ private:
+  float balance;
+  float rate;
+  public:
+  account();    //default constructor
+  ~account();   // destructor
+  void deposit();
+  void withdraw();
+  void compound();
+  void getbalance();
+  void menu();
+};  //class closed
+account::account()
+{
+   cout<<endl<<"Enter initial balance=";
+   cin>>balance;
+   cout<<"Enter initial rate=";
+   cin>>rate;
+}
+account::~account()
+{
+   cout<<endl<<"Database has been deleted\n";
+}
+void account::deposit()
+{
+   float amount;
+   cout<<endl<<"Enter the amount";
+   cin>>amount;
+   balance+=amount;
+}
+void account::withdraw()
+{
+   float amount;
+   cout<<"\nHow much to withdraw?";
+   cin>>amount;
+   if(amount<=balance)
+     { balance-=amount;
+       cout<<"\nAmount withdraw="<<amount;
+       cout<<endl<<"Current Balance"<<balance;
+     }
+   else
+   {
+     cout<<endl<<"Sorry!";
+   }
+   void account::compound()
+   { 
+      float interest;
+      interest=balance*rate;
+      balance=balance+interest;
+      cout<<endl<<"Interest amount is="<<interest<<endl;
+      cout<<"Total amount is="<<balance<<endl;
+   }
+   void account::getbalance()
+   { 
+      cout<<endl<<"Current Balance is="<<balance;
+   }
+   void account::menu()
+   { 
+      cout<<"d->deposit"<<endl;
+      cout<<"w->withdraw"<<endl;
+      cout<<"c->compound interest"<<endl;
+      cout<<"g->getbalance"<<endl;
+      cout<<"q->quit"<<endl;
+      cout<<"Option please?";
+   }
+   
+   int main()
+   { 
+      account acct;
+      char ch;
+      acct.menu();
+      while((ch=getchar()!='q')
+        { 
+           switch(ch)
+            { 
+               case 'd':acct.deposit();
+                        break;
+               case 'w':acct.withdraw();
+                        break;
+               case 'c':acct.compound();
+                        break;
+               case 'g':acct.getbalance();
+                        break;
+             }
+         }
+      getch();
+      return 0;
+}      
